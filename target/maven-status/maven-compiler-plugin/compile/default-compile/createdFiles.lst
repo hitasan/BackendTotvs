@@ -1,0 +1,7 @@
+com\totvs\accountspayable\AccountspayableApplication.class
+com\totvs\accountspayable\domain\service\AccountsPayableService.class
+com\totvs\accountspayable\application\enums\SituacaoConta.class
+com\totvs\accountspayable\infrastructure\controller\AccountsPayableController.class
+com\totvs\accountspayable\config\SecurityConfig.class
+com\totvs\accountspayable\domain\model\AccountsPayable.class
+com\totvs\accountspayable\domain\repository\AccountsPayableRepository.class
