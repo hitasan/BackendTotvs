@@ -22,6 +22,18 @@ import com.totvs.accountspayable.domain.repository.AccountsPayableRepository;
 public class AccountsPayableService {
     @Autowired
     private AccountsPayableRepository accountRepository;
+    
+    public Page<AccountsPayable> findAll(Pageable pageable) {
+    	return accountRepository.findAll(pageable);
+    }
+    
+    public AccountsPayable findById(Integer id) {
+    	return accountRepository.findById(id).orElseThrow();
+    }
+    
+    public Double getTotalPaid(LocalDate start, LocalDate end) {
+    	return accountRepository.sumValorByDataPagamentoBetween(start, end).orElse(0.0);
+    }
 
     public AccountsPayable save(AccountsPayable account) {
         return accountRepository.save(account);
@@ -32,22 +44,10 @@ public class AccountsPayableService {
         return accountRepository.save(account);
     }
 
-    public AccountsPayable updateSituacao(Long id, SituacaoConta situacao) {
+    public AccountsPayable updateSituacao(Integer id, SituacaoConta situacao) {
         AccountsPayable account = accountRepository.findById(id).orElseThrow();
         account.setSituacao(situacao);
         return accountRepository.save(account);
-    }
-
-    public Page<AccountsPayable> findAll(Pageable pageable) {
-        return accountRepository.findAll(pageable);
-    }
-
-    public AccountsPayable findById(Long id) {
-        return accountRepository.findById(id).orElseThrow();
-    }
-
-    public Double getTotalPaid(LocalDate start, LocalDate end) {
-        return accountRepository.sumValorByDataPagamentoBetween(start, end).orElse(0.0);
     }
     
     public void importacaoCSV(MultipartFile file) {

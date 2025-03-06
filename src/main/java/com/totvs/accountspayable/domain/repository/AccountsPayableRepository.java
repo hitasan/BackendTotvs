@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Repository
-public interface AccountsPayableRepository extends JpaRepository<AccountsPayable, Long> {
+public interface AccountsPayableRepository extends JpaRepository<AccountsPayable, Integer> {
 	@Query("SELECT SUM(c.valor) FROM AccountsPayable c WHERE c.datapagamento BETWEEN :start AND :end")
 	Optional<Double> sumValorByDataPagamentoBetween(@Param("start") LocalDate start, @Param("end") LocalDate end);
 }

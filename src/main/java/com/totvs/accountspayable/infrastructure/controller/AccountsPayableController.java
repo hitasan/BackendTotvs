@@ -18,6 +18,21 @@ import com.totvs.accountspayable.domain.service.AccountsPayableService;
 public class AccountsPayableController {
     @Autowired
     private AccountsPayableService accountService;
+    
+    @GetMapping
+    public ResponseEntity<Page<AccountsPayable>> findAll(Pageable pageable) {
+    	return ResponseEntity.ok(accountService.findAll(pageable));
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountsPayable> findById(@PathVariable Integer id) {
+    	return ResponseEntity.ok(accountService.findById(id));
+    }
+    
+    @GetMapping("/totalpaid")
+    public ResponseEntity<Double> getTotalPago(@RequestParam LocalDate start, @RequestParam LocalDate end) {
+    	return ResponseEntity.ok(accountService.getTotalPaid(start, end));
+    }
 
     @PostMapping
     public ResponseEntity<AccountsPayable> create(@RequestBody AccountsPayable account) {
@@ -30,22 +45,7 @@ public class AccountsPayableController {
     }
 
     @PatchMapping("/{id}/situacao")
-    public ResponseEntity<AccountsPayable> updateSituacao(@PathVariable Long id, @RequestParam SituacaoConta situacao) {
+    public ResponseEntity<AccountsPayable> updateSituacao(@PathVariable Integer id, @RequestParam SituacaoConta situacao) {
         return ResponseEntity.ok(accountService.updateSituacao(id, situacao));
     }
-
-    @GetMapping
-    public ResponseEntity<Page<AccountsPayable>> findAll(Pageable pageable) {
-        return ResponseEntity.ok(accountService.findAll(pageable));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<AccountsPayable> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(accountService.findById(id));
-    }
-
-    @GetMapping("/totalpaid")
-    public ResponseEntity<Double> getTotalPago(@RequestParam LocalDate start, @RequestParam LocalDate end) {
-    	    return ResponseEntity.ok(accountService.getTotalPaid(start, end));
-    	}
 }

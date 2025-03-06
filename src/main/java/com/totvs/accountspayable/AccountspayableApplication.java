@@ -1,20 +1,19 @@
 package com.totvs.accountspayable;
 
 import com.totvs.accountspayable.domain.model.AccountsPayable;
-import com.totvs.accountspayable.domain.service.AccountsPayableService;
+import com.totvs.accountspayable.infrastructure.controller.AccountsPayableController;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 
 @SpringBootApplication
 public class AccountspayableApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccountspayableApplication.class, args);
-
+/*
 		LocalDate dataBase = LocalDate.now();
 		
 		AccountsPayable c01 = new AccountsPayable();
@@ -47,20 +46,21 @@ public class AccountspayableApplication {
 		c05.setFornecedor("FornecedorA");
 		c05.setDescricao("Titulo ref. NF 000000002/1");
 		
-		AccountsPayableService accountService = new AccountsPayableService();
-        accountService.save(c01);
+		AccountsPayableController accController = new AccountsPayableController();
+		accController.create(c01);
         System.out.println(c01);
         
-        accountService.save(c02);
+        accController.create(c02);
         System.out.println(c02);
         
-        accountService.save(c03);
+        accController.create(c03);
         System.out.println(c03);
         
-        accountService.save(c04);
+        accController.create(c04);
         System.out.println(c04);
         
-        accountService.save(c05);
-        System.out.println(c05);    
+        accController.create(c05);
+        System.out.println(c05);
+        */    
 	}
 }
