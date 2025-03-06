@@ -5,10 +5,10 @@ services:
     container_name: postgres_db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Totvs@123456789
+      POSTGRES_PASSWORD: 123456
       POSTGRES_DB: accountspayable
     ports:
-      - "5432:5432"
+      - "5432:5432:"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/accountspayable
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: Totvs@123456789
+      SPRING_DATASOURCE_PASSWORD: 123456
 
 volumes:
   postgres_data:

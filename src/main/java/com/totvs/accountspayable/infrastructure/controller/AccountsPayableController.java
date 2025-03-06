@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.totvs.accountspayable.application.enums.SituacaoConta;
 import com.totvs.accountspayable.domain.model.AccountsPayable;
@@ -47,5 +48,15 @@ public class AccountsPayableController {
     @PatchMapping("/{id}/situacao")
     public ResponseEntity<AccountsPayable> updateSituacao(@PathVariable Integer id, @RequestParam SituacaoConta situacao) {
         return ResponseEntity.ok(accountService.updateSituacao(id, situacao));
+    }
+    
+    @PostMapping("/import")
+    public ResponseEntity<String> importCSV(@RequestParam("file") MultipartFile file) {
+        try {
+            accountService.importacaoCSV(file);
+            return ResponseEntity.ok("Arquivo CSV importado com sucesso!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body("Falha ao importar CSV: " + e.getMessage());
+        }
     }
 }
